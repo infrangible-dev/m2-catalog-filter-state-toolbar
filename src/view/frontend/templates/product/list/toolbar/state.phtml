@@ -1,0 +1,54 @@
+<?php
+
+declare(strict_types=1);
+
+use Infrangible\CatalogFilterStateToolbar\Block\Product\ProductList\Toolbar\State;
+use Magento\Framework\Escaper;
+use Magento\Framework\View\TemplateEngine\Php;
+
+/**
+ * @author      Andreas Knollmann
+ * @copyright   2014-2025 Softwareentwicklung Andreas Knollmann
+ * @license     http://www.opensource.org/licenses/mit-license.php MIT
+ */
+
+/** @var Php $this */
+/** @var Escaper $escaper */
+/** @var State $block */
+
+$filters = $block->getActiveFilters();
+?>
+
+<?php if (count($filters) > 0): ?>
+    <div class="toolbar toolbar-filters">
+        <div class="filters">
+            <ol class="items">
+                <?php foreach ($filters as $filter): ?>
+                    <?php
+                    $clearLinkUrl = $filter->getClearLinkUrl();
+                    $currentFilterName = $escaper->escapeHtmlAttr(
+                            sprintf('%s %s', __($filter->getName()), $block->stripTags($filter->getData('label'))));
+                    try {
+                        $filterFilter = $filter->getFilter();
+                    } catch (\Magento\Framework\Exception\LocalizedException $exception) {
+                        continue;
+                    }
+                    ?>
+                    <li class="item">
+                        <a class="action remove" href="<?= $escaper->escapeUrl($filter->getRemoveUrl()); ?>"
+                           title="<?= /* @noEscape */ sprintf('%s %s', $escaper->escapeHtmlAttr(__('Remove')), $currentFilterName); ?>">
+                            <span class="filter-label"><?= $escaper->escapeHtml(__($filter->getName())); ?></span>
+                            <span class="filter-value"><?= $escaper->escapeHtml($block->stripTags($filter->getData('label'))); ?></span>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+                <li class="item">
+                    <a class="action remove" href="<?= $escaper->escapeUrl($block->getClearUrl()); ?>"
+                       title="<?= $escaper->escapeHtml(__('Clear All')); ?>">
+                        <span class="filter-value"><?= $escaper->escapeHtml(__('Clear All')); ?></span>
+                    </a>
+                </li>
+            </ol>
+        </div>
+    </div>
+<?php endif; ?>

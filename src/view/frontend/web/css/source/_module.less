@@ -1,0 +1,75 @@
+/**
+ * @author      Andreas Knollmann
+ * @copyright   2014-2025 Softwareentwicklung Andreas Knollmann
+ * @license     http://www.opensource.org/licenses/mit-license.php MIT
+ */
+
+& when (@media-common = true) {
+    .catalog-category-view {
+        .sidebar-main {
+            .block.filter {
+                .block-content.filter-content {
+                    .filter-current, .block-actions.filter-actions {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .toolbar-products {
+            &:has(+ .toolbar-filters) {
+                margin-bottom: 10px;
+            }
+        }
+
+        .toolbar-filters {
+            background-color: transparent;
+
+            .filters {
+                display: inline-block;
+                float: left;
+                margin-right: 20px;
+
+                .items {
+                    display: inline-block;
+                    float: left;
+                    margin-right: 20px;
+
+                    .item {
+                        position: relative;
+                        display: inline-block;
+                        float: left;
+                        margin-right: 10px;
+                        padding: 6px 10px 6px 10px;
+                        background-color: #f0f0f0;
+
+                        .action.remove {
+                            text-decoration: none;
+
+                            &:before {
+                                -webkit-font-smoothing: antialiased;
+                                -moz-osx-font-smoothing: grayscale;
+                                font-size: 12px;
+                                line-height: 15px;
+                                color: #757575;
+                                content: '\e616';
+                                font-family: 'luma-icons';
+                                vertical-align: middle;
+                                display: inline-block;
+                                font-weight: normal;
+                                overflow: hidden;
+                                speak: none;
+                                text-align: center;
+                            }
+
+                            .filter-label, .filter-value {
+                                font-weight: normal;
+                                color: #333;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
