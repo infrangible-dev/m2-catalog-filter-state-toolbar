@@ -8,26 +8,28 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="additional">
-            <block class="Infrangible\CatalogFilterStateToolbar\Block\Product\ProductList\Toolbar\State" name="additional.state" template="Infrangible_CatalogFilterStateToolbar::product/list/toolbar/state.phtml" before="-">
+            <block class="Infrangible\CatalogFilterStateToolbar\Block\Product\ProductList\Toolbar\State" name="search.product.list.additional.state" template="Infrangible_CatalogFilterStateToolbar::product/list/toolbar/state.phtml" before="-">
                 <arguments>
                     <argument name="toolbarClass" xsi:type="string">toolbar toolbar-filters</argument>
                     <argument name="filtersClass" xsi:type="string">filters</argument>
                     <argument name="itemsClass" xsi:type="string">items</argument>
                 </arguments>
-                <block class="Infrangible\CatalogFilterStateToolbar\Block\Product\ProductList\Toolbar\State\Item" name="category.product.list.additional.state.item" as="item" template="Infrangible_CatalogFilterStateToolbar::product/list/toolbar/state/item.phtml">
+                <block class="Infrangible\CatalogFilterStateToolbar\Block\Product\ProductList\Toolbar\State\Item" name="search.product.list.additional.state.item" as="item" template="Infrangible_CatalogFilterStateToolbar::product/list/toolbar/state/item.phtml">
                     <arguments>
                         <argument name="itemClass" xsi:type="string">item</argument>
                         <argument name="linkClass" xsi:type="string">action remove</argument>
                         <argument name="labelClass" xsi:type="string">filter-label</argument>
                         <argument name="valueClass" xsi:type="string">filter-value</argument>
                     </arguments>
+                    <container name="search.product.list.additional.state.item.additional" as="additional"/>
                 </block>
-                <block class="Infrangible\CatalogFilterStateToolbar\Block\Product\ProductList\Toolbar\State\Clear" name="category.product.list.additional.state.clear" as="clear" template="Infrangible_CatalogFilterStateToolbar::product/list/toolbar/state/clear.phtml">
+                <block class="Infrangible\CatalogFilterStateToolbar\Block\Product\ProductList\Toolbar\State\Clear" name="search.product.list.additional.state.clear" as="clear" template="Infrangible_CatalogFilterStateToolbar::product/list/toolbar/state/clear.phtml">
                     <arguments>
                         <argument name="itemClass" xsi:type="string">item</argument>
                         <argument name="linkClass" xsi:type="string">action remove</argument>
                         <argument name="valueClass" xsi:type="string">filter-value</argument>
                     </arguments>
+                    <container name="search.product.list.additional.state.clear.additional" as="additional"/>
                 </block>
             </block>
         </referenceContainer>

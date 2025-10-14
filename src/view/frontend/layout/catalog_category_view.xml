@@ -21,6 +21,7 @@
                         <argument name="labelClass" xsi:type="string">filter-label</argument>
                         <argument name="valueClass" xsi:type="string">filter-value</argument>
                     </arguments>
+                    <container name="category.product.list.additional.state.item.additional" as="additional"/>
                 </block>
                 <block class="Infrangible\CatalogFilterStateToolbar\Block\Product\ProductList\Toolbar\State\Clear" name="category.product.list.additional.state.clear" as="clear" template="Infrangible_CatalogFilterStateToolbar::product/list/toolbar/state/clear.phtml">
                     <arguments>
@@ -28,6 +29,7 @@
                         <argument name="linkClass" xsi:type="string">action remove</argument>
                         <argument name="valueClass" xsi:type="string">filter-value</argument>
                     </arguments>
+                    <container name="category.product.list.additional.state.clear.additional" as="additional"/>
                 </block>
             </block>
         </referenceContainer>

@@ -31,5 +31,5 @@ $value = $escaper->escapeHtml($block->stripTags($filter->getData('label')));
         <span class="<?= $block->getData('labelClass'); ?>"><?= $label; ?></span>
         <span class="<?= $block->getData('valueClass'); ?>"><?= $value; ?></span>
     </a>
-    <?= $block->getChildHtml('additional'); ?>
+    <?= $block->renderAdditional(); ?>
 </li>

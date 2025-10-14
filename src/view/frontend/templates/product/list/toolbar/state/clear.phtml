@@ -18,7 +18,7 @@ use Magento\Framework\View\TemplateEngine\Php;
 ?>
 
 <li class="<?= $block->getData('itemClass'); ?>">
-    <a class="action remove" href="<?= $escaper->escapeUrl($block->getClearUrl()); ?>"
+    <a class="<?= $block->getData('linkClass'); ?>" href="<?= $escaper->escapeUrl($block->getClearUrl()); ?>"
        title="<?= $escaper->escapeHtml(__('Clear All')); ?>">
         <span class="<?= $block->getData('valueClass'); ?>"><?= $escaper->escapeHtml(__('Clear All')); ?></span>
     </a>

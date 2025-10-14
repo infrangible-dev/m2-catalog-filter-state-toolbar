@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Infrangible\CatalogFilterStateToolbar\Block\Product\ProductList\Toolbar\State;
 
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\View\Element\Template;
 
 /**
@@ -24,5 +25,35 @@ class Item extends Template
     public function setFilter(\Magento\Catalog\Model\Layer\Filter\Item $filter): void
     {
         $this->filter = $filter;
+    }
+
+    public function renderAdditional(): string
+    {
+        try {
+            $layout = $this->getLayout();
+        } catch (LocalizedException $exception) {
+            return '';
+        }
+
+        $additionalContainerName = $layout->getChildName(
+            $this->getNameInLayout(),
+            'additional'
+        );
+
+        $childBlocks = $layout->getChildBlocks($additionalContainerName);
+
+        $childHtml = '';
+
+        if ($childBlocks) {
+            foreach ($childBlocks as $childBlock) {
+                if ($childBlock instanceof Item) {
+                    $childBlock->setFilter($this->getFilter());
+                }
+
+                $childHtml .= $childBlock->toHtml();
+            }
+        }
+
+        return $childHtml;
     }
 }
