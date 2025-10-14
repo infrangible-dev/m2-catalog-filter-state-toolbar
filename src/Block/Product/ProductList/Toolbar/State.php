@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Infrangible\CatalogFilterStateToolbar\Block\Product\ProductList\Toolbar;
 
-use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\View\Element\Template;
 
 /**
@@ -56,25 +55,21 @@ class State extends Template
         return $this->_getData('layer');
     }
 
-    public function getClearUrl(): string
+    public function renderFilter(\Magento\Catalog\Model\Layer\Filter\Item $filter)
     {
-        $filterState = [];
+        $itemBlock = $this->getChildBlock('item');
 
-        foreach ($this->getActiveFilters() as $item) {
-            try {
-                $filterState[ $item->getFilter()->getRequestVar() ] = $item->getFilter()->getCleanValue();
-            } catch (LocalizedException $exception) {
-            }
+        if ($itemBlock instanceof \Infrangible\CatalogFilterStateToolbar\Block\Product\ProductList\Toolbar\State\Item) {
+            $itemBlock->setFilter($filter);
+
+            return $itemBlock->toHtml();
         }
 
-        $params[ '_current' ] = true;
-        $params[ '_use_rewrite' ] = true;
-        $params[ '_query' ] = $filterState;
-        $params[ '_escape' ] = true;
+        return '';
+    }
 
-        return $this->_urlBuilder->getUrl(
-            '*/*/*',
-            $params
-        );
+    public function renderClear(): string
+    {
+        return $this->getChildHtml('clear');
     }
 }

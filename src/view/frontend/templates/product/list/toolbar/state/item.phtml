@@ -1,0 +1,35 @@
+<?php
+
+declare(strict_types=1);
+
+use Infrangible\CatalogFilterStateToolbar\Block\Product\ProductList\Toolbar\State\Item;
+use Magento\Framework\Escaper;
+use Magento\Framework\View\TemplateEngine\Php;
+
+/**
+ * @author      Andreas Knollmann
+ * @copyright   2014-2025 Softwareentwicklung Andreas Knollmann
+ * @license     http://www.opensource.org/licenses/mit-license.php MIT
+ */
+
+/** @var Php $this */
+/** @var Escaper $escaper */
+/** @var Item $block */
+
+$filter = $block->getFilter();
+
+$removeUrl = $escaper->escapeUrl($filter->getRemoveUrl());
+$title = sprintf('%s %s', $escaper->escapeHtmlAttr(__('Remove')),
+    $escaper->escapeHtmlAttr(sprintf('%s %s', __($filter->getName()), $block->stripTags($filter->getData('label')))));
+$label = $escaper->escapeHtml(__($filter->getName()));
+$value = $escaper->escapeHtml($block->stripTags($filter->getData('label')));
+?>
+
+<li class="<?= $block->getData('itemClass'); ?>">
+    <a class="<?= $block->getData('linkClass'); ?>" href="<?= $removeUrl; ?>"
+       title="<?= /* @noEscape */ $title; ?>">
+        <span class="<?= $block->getData('labelClass'); ?>"><?= $label; ?></span>
+        <span class="<?= $block->getData('valueClass'); ?>"><?= $value; ?></span>
+    </a>
+    <?= $block->getChildHtml('additional'); ?>
+</li>

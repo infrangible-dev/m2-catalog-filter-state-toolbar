@@ -20,34 +20,13 @@ $filters = $block->getActiveFilters();
 ?>
 
 <?php if (count($filters) > 0): ?>
-    <div class="toolbar toolbar-filters">
-        <div class="filters">
-            <ol class="items">
+    <div class="<?= $block->getData('toolbarClass'); ?>">
+        <div class="<?= $block->getData('filtersClass'); ?>">
+            <ol class="<?= $block->getData('itemsClass'); ?>">
                 <?php foreach ($filters as $filter): ?>
-                    <?php
-                    $clearLinkUrl = $filter->getClearLinkUrl();
-                    $currentFilterName = $escaper->escapeHtmlAttr(
-                            sprintf('%s %s', __($filter->getName()), $block->stripTags($filter->getData('label'))));
-                    try {
-                        $filterFilter = $filter->getFilter();
-                    } catch (\Magento\Framework\Exception\LocalizedException $exception) {
-                        continue;
-                    }
-                    ?>
-                    <li class="item">
-                        <a class="action remove" href="<?= $escaper->escapeUrl($filter->getRemoveUrl()); ?>"
-                           title="<?= /* @noEscape */ sprintf('%s %s', $escaper->escapeHtmlAttr(__('Remove')), $currentFilterName); ?>">
-                            <span class="filter-label"><?= $escaper->escapeHtml(__($filter->getName())); ?></span>
-                            <span class="filter-value"><?= $escaper->escapeHtml($block->stripTags($filter->getData('label'))); ?></span>
-                        </a>
-                    </li>
+                    <?= $block->renderFilter($filter); ?>
                 <?php endforeach; ?>
-                <li class="item">
-                    <a class="action remove" href="<?= $escaper->escapeUrl($block->getClearUrl()); ?>"
-                       title="<?= $escaper->escapeHtml(__('Clear All')); ?>">
-                        <span class="filter-value"><?= $escaper->escapeHtml(__('Clear All')); ?></span>
-                    </a>
-                </li>
+                <?= $block->renderClear(); ?>
             </ol>
         </div>
     </div>
