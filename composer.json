@@ -1,11 +1,19 @@
 {
     "name": "infrangible/m2-catalog-filter-state-toolbar",
-    "description": "Infrangible Magento 2 Catalog Filter State Toolbar",
+    "description": "Shows the currently applied filters directly above the product list, each with a remove link, plus a \"Clear All\" link, instead of in the sidebar.",
     "type": "magento2-module",
     "version": "1.2.1",
     "license": "MIT",
     "keywords": [
-        "Magento"
+        "Magento",
+        "Magento 2",
+        "Adobe Commerce",
+        "Layered navigation",
+        "Catalog",
+        "Hyvä",
+        "active filters above the product list",
+        "applied filters toolbar",
+        "clear all filters link"
     ],
     "homepage": "https://github.com/infrangible-dev/m2-catalog-filter-state-toolbar",
     "authors": [
