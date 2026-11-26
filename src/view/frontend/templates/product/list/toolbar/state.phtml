@@ -2,17 +2,15 @@
 
 declare(strict_types=1);
 
-use Infrangible\CatalogFilterStateToolbar\Block\Product\ProductList\Toolbar\State;
-use Magento\Framework\Escaper;
-use Magento\Framework\View\TemplateEngine\Php;
-
 /**
  * @author      Andreas Knollmann
- * @copyright   2014-2025 Softwareentwicklung Andreas Knollmann
+ * @copyright   Copyright (c) 2014-2026 Softwareentwicklung Andreas Knollmann
  * @license     http://www.opensource.org/licenses/mit-license.php MIT
  */
 
-/** @var Php $this */
+use Infrangible\CatalogFilterStateToolbar\Block\Product\ProductList\Toolbar\State;
+use Magento\Framework\Escaper;
+
 /** @var Escaper $escaper */
 /** @var State $block */
 
@@ -20,13 +18,13 @@ $filters = $block->getActiveFilters();
 ?>
 
 <?php if (count($filters) > 0): ?>
-    <div class="<?= $block->getData('toolbarClass'); ?>">
-        <div class="<?= $block->getData('filtersClass'); ?>">
-            <ol class="<?= $block->getData('itemsClass'); ?>">
+    <div class="<?= $escaper->escapeHtmlAttr($block->getDataString('toolbarClass')) ?>">
+        <div class="<?= $escaper->escapeHtmlAttr($block->getDataString('filtersClass')) ?>">
+            <ol class="<?= $escaper->escapeHtmlAttr($block->getDataString('itemsClass')) ?>">
                 <?php foreach ($filters as $filter): ?>
-                    <?= $block->renderFilter($filter); ?>
+                    <?= /* @noEscape */ $block->renderFilter($filter) ?>
                 <?php endforeach; ?>
-                <?= $block->renderClear(); ?>
+                <?= /* @noEscape */ $block->renderClear() ?>
             </ol>
         </div>
     </div>

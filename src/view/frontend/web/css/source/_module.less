@@ -1,15 +1,17 @@
 /**
  * @author      Andreas Knollmann
- * @copyright   2014-2025 Softwareentwicklung Andreas Knollmann
+ * @copyright   Copyright (c) 2014-2026 Softwareentwicklung Andreas Knollmann
  * @license     http://www.opensource.org/licenses/mit-license.php MIT
  */
 
 & when (@media-common = true) {
-    .catalog-category-view, .catalogsearch-result-index {
+    .catalog-category-view,
+    .catalogsearch-result-index {
         .sidebar-main {
             .block.filter {
                 .block-content.filter-content {
-                    .filter-current, .block-actions.filter-actions {
+                    .filter-current,
+                    .block-actions.filter-actions {
                         display: none;
                     }
                 }
@@ -17,7 +19,7 @@
         }
 
         .toolbar-products {
-            &:has(+ .toolbar-filters) {
+            &:has( + .toolbar-filters) {
                 margin-bottom: 10px;
             }
         }
@@ -36,35 +38,35 @@
                     margin-right: 20px;
 
                     .item {
-                        position: relative;
+                        background-color: @color-gray94;
                         display: inline-block;
                         float: left;
                         margin-right: 10px;
-                        padding: 6px 10px 6px 10px;
-                        background-color: #f0f0f0;
+                        padding: 6px 10px;
+                        position: relative;
 
                         .action.remove {
                             text-decoration: none;
 
                             &:before {
-                                -webkit-font-smoothing: antialiased;
                                 -moz-osx-font-smoothing: grayscale;
-                                font-size: 12px;
-                                line-height: 15px;
-                                color: #757575;
-                                content: '\e616';
-                                font-family: 'luma-icons';
-                                vertical-align: middle;
+                                -webkit-font-smoothing: antialiased;
+                                color: @color-gray46;
+                                content: @icon-remove;
                                 display: inline-block;
+                                font-family: @icons__font-name;
+                                font-size: 12px;
                                 font-weight: normal;
+                                line-height: 15px;
                                 overflow: hidden;
-                                speak: none;
                                 text-align: center;
+                                vertical-align: middle;
                             }
 
-                            .filter-label, .filter-value {
+                            .filter-label,
+                            .filter-value {
+                                color: @color-gray20;
                                 font-weight: normal;
-                                color: #333;
                             }
                         }
                     }

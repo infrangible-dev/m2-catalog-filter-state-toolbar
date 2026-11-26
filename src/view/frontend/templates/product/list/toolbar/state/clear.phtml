@@ -2,25 +2,26 @@
 
 declare(strict_types=1);
 
-use Infrangible\CatalogFilterStateToolbar\Block\Product\ProductList\Toolbar\State\Clear;
-use Magento\Framework\Escaper;
-use Magento\Framework\View\TemplateEngine\Php;
-
 /**
  * @author      Andreas Knollmann
- * @copyright   2014-2025 Softwareentwicklung Andreas Knollmann
+ * @copyright   Copyright (c) 2014-2026 Softwareentwicklung Andreas Knollmann
  * @license     http://www.opensource.org/licenses/mit-license.php MIT
  */
 
-/** @var Php $this */
+use Infrangible\CatalogFilterStateToolbar\Block\Product\ProductList\Toolbar\State\Clear;
+use Magento\Framework\Escaper;
+
 /** @var Escaper $escaper */
 /** @var Clear $block */
+
+$valueClass = $escaper->escapeHtmlAttr($block->getDataString('valueClass'));
 ?>
 
-<li class="<?= $block->getData('itemClass'); ?>">
-    <a class="<?= $block->getData('linkClass'); ?>" href="<?= $escaper->escapeUrl($block->getClearUrl()); ?>"
-       title="<?= $escaper->escapeHtml(__('Clear All')); ?>">
-        <span class="<?= $block->getData('valueClass'); ?>"><?= $escaper->escapeHtml(__('Clear All')); ?></span>
+<li class="<?= $escaper->escapeHtmlAttr($block->getDataString('itemClass')) ?>">
+    <a class="<?= $escaper->escapeHtmlAttr($block->getDataString('linkClass')) ?>"
+       href="<?= $escaper->escapeUrl($block->getClearUrl()) ?>"
+       title="<?= $escaper->escapeHtmlAttr(__('Clear All')) ?>">
+        <span class="<?= /* @noEscape */ $valueClass ?>"><?= $escaper->escapeHtml(__('Clear All')) ?></span>
     </a>
-    <?= $block->getChildHtml('additional'); ?>
+    <?= $block->getChildHtml('additional') ?>
 </li>
